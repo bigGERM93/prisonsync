@@ -548,6 +548,7 @@ public class PrisonSyncGitVersion extends JFrame{
 		pViewInmate = new JPanel();
 		pFunctionScreen.add(pViewInmate, "name_384628246847050");
 		pViewInmate.setLayout(null);
+                pViewInmate.setBackground(new Color(250, 250, 250, 150));
 		
 		lblViewInmate = new JLabel("View Inmate");
 		lblViewInmate.setFont(new Font("Dialog", Font.BOLD, 24));
@@ -571,7 +572,7 @@ public class PrisonSyncGitVersion extends JFrame{
 		btnName_in.setBounds(217, 71, 83, 20);
 		pViewInmate.add(btnName_in);
 		
-		lblSSNSearch_in = new JLabel("SSN:");
+		/*lblSSNSearch_in = new JLabel("SSN:");
 		lblSSNSearch_in.setBounds(317, 74, 100, 15);
 		pViewInmate.add(lblSSNSearch_in);
 		
@@ -582,10 +583,11 @@ public class PrisonSyncGitVersion extends JFrame{
 		
 		btnBack_in = new JButton("Search");
 		btnBack_in.setBounds(483, 69, 83, 20);
-		pViewInmate.add(btnBack_in);
+		pViewInmate.add(btnBack_in);*/
 		
 		txtView_in = new JTextArea();
 		txtView_in.setEnabled(false);
+                txtView_in.setEditable(false);
 		txtView_in.setBounds(41, 112, 527, 233);
 		pViewInmate.add(txtView_in);
 		
@@ -630,7 +632,7 @@ public class PrisonSyncGitVersion extends JFrame{
 		btnNameSearch_emp.setBounds(217, 71, 83, 20);
 		pViewEmployee.add(btnNameSearch_emp);
 		
-		lblSSNSearch_emp = new JLabel("SSN:");
+		/*lblSSNSearch_emp = new JLabel("SSN:");
 		lblSSNSearch_emp.setBounds(317, 74, 100, 15);
 		pViewEmployee.add(lblSSNSearch_emp);
 		
@@ -641,10 +643,11 @@ public class PrisonSyncGitVersion extends JFrame{
 		
 		btnSSNSearch_emp = new JButton("Search");
 		btnSSNSearch_emp.setBounds(483, 69, 83, 20);
-		pViewEmployee.add(btnSSNSearch_emp);
+		pViewEmployee.add(btnSSNSearch_emp);*/
 		
 		txtView_emp = new JTextArea();
 		txtView_emp.setEnabled(false);
+                txtView_emp.setEditable(false);
 		txtView_emp.setBounds(41, 112, 527, 233);
 		pViewEmployee.add(txtView_emp);
 		
