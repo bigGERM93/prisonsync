@@ -116,8 +116,6 @@ public class PrisonSyncGitVersion extends JFrame {
     private JButton btnPrisonMap;
     private JButton button_4;
     private JButton btnLogOut;
-	//private JMenuItem 
-    //private JMenuItem 
     private JLabel lblNewLabel;
     private JPanel pCreateInmate;
     private JLabel lblCreateInmate;
@@ -199,7 +197,14 @@ public class PrisonSyncGitVersion extends JFrame {
     private JButton btnSubmit_in;
     private JTextArea txtDescription_in;
     private JLabel lblDescription_in;
-    private 
+    private JLabel lblCreateInmate2;
+    private JPanel pMoreInfoScreen_emp;
+    private JLabel lblCreateUsername_emp;
+    private JLabel lblCreatePassword_emp;
+    private JLabel lblVerifyPassword_emp;
+    private JLabel lblCreateEmployee2;
+    private JButton btnCancel2_emp;
+    private JButton btnContinue_emp;
 
     /**
      * Launch the prison system application.
@@ -302,6 +307,8 @@ public class PrisonSyncGitVersion extends JFrame {
         createEmployeeScreen();
         viewInmateScreen();
         viewEmployeeScreen();
+        inmateMoreInfoScreen();
+        employeeMoreInfoScreen();
     }
 
     /*
@@ -360,7 +367,7 @@ public class PrisonSyncGitVersion extends JFrame {
         lblPicture_in.setBackground(Color.white);
         pCreateInmate.add(lblPicture_in);
 
-        lblSSN_in = new JLabel("SSN (###-##-####) :");
+        lblSSN_in = new JLabel("SSN (###-##-####):");
         lblSSN_in.setBounds(40, 197, 161, 15);
         pCreateInmate.add(lblSSN_in);
 
@@ -430,27 +437,49 @@ public class PrisonSyncGitVersion extends JFrame {
         txtDescription_in = new JTextArea();
         txtDescription_in.setBounds(40, 337, 246, 65);
         pCreateInmate.add(txtDescription_in);
-
+    }
+     
+    /*
+    * create the screen to gather more information to create the employee
+    */
+    public void inmateMoreInfoScreen(){
         pMoreInfoScreen_in = new JPanel();
         pMoreInfoScreen_in.setBackground(new Color(250, 250, 250, 150));
         pFunctionScreen.add(pMoreInfoScreen_in);
         pMoreInfoScreen_in.setLayout(null);
+    }
+    
+    /*
+    * create the screen for more information to create the inmate
+    */
+    public void employeeMoreInfoScreen(){
+        pMoreInfoScreen_emp = new JPanel();
+        pMoreInfoScreen_emp.setBackground(new Color(250, 250, 250, 150));
+        pFunctionScreen.add(pMoreInfoScreen_emp);
+        pMoreInfoScreen_emp.setLayout(null);
         
-        lblCreateUsername_in = new JLabel("Create Username:");
-        lblCreateUsername_in.setBounds(40,12, 198, 29);
-        pMoreInfoScreen_in.add(lblCreateUsername_in);
+        lblCreateEmployee2 = new JLabel("Create Employee Continued");
+        lblCreateEmployee2.setFont(new Font("Dialog", Font.BOLD, 24));
+        lblCreateEmployee2.setBounds(40, 12, 210, 29);
+        pMoreInfoScreen_emp.add(lblCreateEmployee2);
+         
+        lblCreateUsername_emp = new JLabel("Create Username:");
+        lblCreateUsername_emp.setBounds(40, 67, 120, 15);
+        pMoreInfoScreen_emp.add(lblCreateUsername_emp);
         
-        lblCreatePassword_in = new JLabel("Create Password");
-        lblCreatePassword_in.setBounds();
+        lblCreatePassword_emp = new JLabel("Create Password");
+        lblCreatePassword_emp.setBounds(40, 154, 143, 15);
+        pMoreInfoScreen_emp.add(lblCreatePassword_emp);
         
-        btnCancel2_in = new JButton("Cancel");
-        btnCancel2_in.setBounds(344, 375, 117, 25);
-        pMoreInfoScreen_in.add(btnCancel2_in);
-        btnCancel2_in.addActionListener(new MainMenuListener());
+        btnCancel2_emp = new JButton("Cancel");
+        btnCancel2_emp.setBounds(344, 375, 117, 25);
+        pMoreInfoScreen_emp.add(btnCancel2_emp);
+        btnCancel2_emp.addActionListener(new MainMenuListener());
         
-        btnSubmit_in = new JButton("Submit");
-        btnSubmit_in.setBounds(473, 375, 117, 25);
-        pMoreInfoScreen_in.add(btnSubmit_in);
+        btnSubmit_emp = new JButton("Submit");
+        btnSubmit_emp.setBounds(473, 375, 117, 25);
+        pMoreInfoScreen_emp.add(btnSubmit_emp);
+        btnSubmit_emp.addActionListener(new MainMenuListener());
     }
 
     /*
@@ -561,10 +590,11 @@ public class PrisonSyncGitVersion extends JFrame {
         btnCancel_emp = new JButton("Cancel");
         btnCancel_emp.setBounds(344, 375, 117, 25);
         pCreateEmployee.add(btnCancel_emp);
-
-        btnSubmit_emp = new JButton("Submit");
-        btnSubmit_emp.setBounds(473, 375, 117, 25);
-        pCreateEmployee.add(btnSubmit_emp);
+        btnCancel_emp.addActionListener(new MainMenuListener());
+        
+        btnContinue_emp = new JButton("Continue");
+        btnContinue_emp.setBounds(473, 375, 117, 25);
+        pCreateEmployee.add(btnContinue_emp);
 
         lblDescription_emp = new JLabel("Description:");
         lblDescription_emp.setBounds(40, 321, 114, 15);
@@ -573,7 +603,7 @@ public class PrisonSyncGitVersion extends JFrame {
         txtDescription_emp = new JTextArea();
         txtDescription_emp.setBounds(40, 337, 246, 65);
         pCreateEmployee.add(txtDescription_emp);
-
+        
     }
 
     /*
@@ -678,6 +708,7 @@ public class PrisonSyncGitVersion extends JFrame {
          btnSSNSearch_emp = new JButton("Search");
          btnSSNSearch_emp.setBounds(483, 69, 83, 20);
          pViewEmployee.add(btnSSNSearch_emp);*/
+        
         txtView_emp = new JTextArea();
         txtView_emp.setEnabled(false);
         txtView_emp.setEditable(false);
@@ -706,7 +737,7 @@ public class PrisonSyncGitVersion extends JFrame {
         txtUsername.setForeground(new Color(128, 128, 128));
         txtUsername.setText("Username");
         txtUsername.setBounds(66, 339, 187, 30);
-        txtUsername.setBackground(new Color(10, 10, 10, 40));
+        txtUsername.setBackground(new Color(10, 10, 10));
         txtUsername.setColumns(10);
         txtUsername.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
@@ -727,7 +758,7 @@ public class PrisonSyncGitVersion extends JFrame {
         txtPassword.setForeground(new Color(128, 128, 128));
         txtPassword.setBounds(66, 381, 187, 30);
         txtPassword.setColumns(10);
-        txtPassword.setBackground(new Color(10, 10, 10, 40));
+        txtPassword.setBackground(new Color(10, 10, 10));
         txtPassword.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
                 if (txtPassword.getText().equals("Password")) {
@@ -874,6 +905,8 @@ public class PrisonSyncGitVersion extends JFrame {
         pCreateEmployee.setVisible(false);
         pViewInmate.setVisible(false);
         pViewEmployee.setVisible(false);
+        pMoreInfoScreen_in.setVisible(false);
+        //pMoreInfoScreen_emp.setVisible(false):
     }
     /*
      * set all jpanels in card layout to not visible
@@ -910,6 +943,14 @@ public class PrisonSyncGitVersion extends JFrame {
         }
 
     }
+    
+    /*
+    this method generates a unique id number for each inmate created
+    */
+    public String generateUID(){
+        String uid = "";// = UUID.randomUUID().toString();
+        return uid;
+    }
 
     /*
      * action listener for the main menu to display proper screen
@@ -940,11 +981,15 @@ public class PrisonSyncGitVersion extends JFrame {
                 pFunctionScreen.setVisible(true);
             } else if (action.getSource() == btnPrisonMap) {
                 pFunctionScreen.setVisible(true);
-            } else if (action.getSource() == btnCancel_in || action.getSource() == btnCancel2_in){
+            } else if (action.getSource() == btnCancel_in || action.getSource() == btnCancel2_in
+                     || action.getSource() == btnCancel_emp || action.getSource() == btnCancel2_emp){
                 pMainMenu.setVisible(true);
             }else if (action.getSource() == btnContinue_in){
                 pFunctionScreen.setVisible(true);
                 pMoreInfoScreen_in.setVisible(true);
+            }else if (action.getSource() == btnContinue_emp){
+                pFunctionScreen.setVisible(true);
+                pMoreInfoScreen_emp.setVisible(true);
             }else if (action.getSource() == btnLogOut) {
 		//discard changes
 
