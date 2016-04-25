@@ -89,7 +89,6 @@ import javax.swing.JFormattedTextField;
 public class PrisonSyncGitVersion extends JFrame {
 
     //class variables
-
     private JPanel contentPane;
     private Image image;
     private JTextField txtUsername;
@@ -238,7 +237,7 @@ public class PrisonSyncGitVersion extends JFrame {
         this.setTitle("Prison Sync");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		//set a few sizing/position constraints
+        //set a few sizing/position constraints
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setBounds(300, 300, 850, 600);
         this.setResizable(false);
@@ -317,7 +316,7 @@ public class PrisonSyncGitVersion extends JFrame {
     /*
      * this method create the screen to add a new inmate to database
      */
-    public void createInmateScreen(){
+    public void createInmateScreen() {
         pCreateInmate = new JPanel();
         pCreateInmate.setBackground(new Color(250, 250, 250, 150));
         pFunctionScreen.add(pCreateInmate);
@@ -327,7 +326,7 @@ public class PrisonSyncGitVersion extends JFrame {
         lblCreateInmate.setFont(new Font("Dialog", Font.BOLD, 24));
         lblCreateInmate.setBounds(40, 12, 198, 29);
         pCreateInmate.add(lblCreateInmate);
-        
+
         lblFirst_in = new JLabel("First:");
         lblFirst_in.setBounds(40, 67, 46, 15);
         pCreateInmate.add(lblFirst_in);
@@ -427,7 +426,7 @@ public class PrisonSyncGitVersion extends JFrame {
         btnCancel_in.setBounds(344, 375, 117, 25);
         pCreateInmate.add(btnCancel_in);
         btnCancel_in.addActionListener(new NavigationListener());
-        
+
         btnContinue_in = new JButton("Continue");
         btnContinue_in.setBounds(473, 375, 117, 25);
         pCreateInmate.add(btnContinue_in);
@@ -441,86 +440,86 @@ public class PrisonSyncGitVersion extends JFrame {
         txtDescription_in.setBounds(40, 337, 246, 65);
         pCreateInmate.add(txtDescription_in);
     }
-     
+
     /*
-    * create the screen to gather more information to create the employee
-    */
-    public void inmateMoreInfoScreen(){
+     * create the screen to gather more information to create the employee
+     */
+    public void inmateMoreInfoScreen() {
         pMoreInfoScreen_in = new JPanel();
         pMoreInfoScreen_in.setBackground(new Color(250, 250, 250, 150));
         pFunctionScreen.add(pMoreInfoScreen_in);
         pMoreInfoScreen_in.setLayout(null);
-     
+
         lblCreateInmate2 = new JLabel("Create Employee Continued");
         lblCreateInmate2.setFont(new Font("Dialog", Font.BOLD, 24));
         lblCreateInmate2.setBounds(40, 12, 350, 29);
         pMoreInfoScreen_in.add(lblCreateInmate2);
-         
+
         lblCreateUsername_in = new JLabel("Create Username:");
         lblCreateUsername_in.setBounds(40, 67, 120, 15);
         pMoreInfoScreen_in.add(lblCreateUsername_in);
-        
+
         lblCreatePassword_in = new JLabel("Create Password");
         lblCreatePassword_in.setBounds(40, 154, 143, 15);
         pMoreInfoScreen_in.add(lblCreatePassword_in);
-        
+
         btnCancel2_in = new JButton("Cancel");
         btnCancel2_in.setBounds(215, 375, 117, 25);
         pMoreInfoScreen_in.add(btnCancel2_in);
         btnCancel_in.addActionListener(new NavigationListener());
-        
+
         btnBack_in = new JButton("Back");
-        btnBack_in.setBounds(344,375,117, 25);
+        btnBack_in.setBounds(344, 375, 117, 25);
         pMoreInfoScreen_in.add(btnBack_in);
         btnBack_in.addActionListener(new NavigationListener());
-        
+
         btnSubmit_in = new JButton("Submit");
         btnSubmit_in.setBounds(473, 375, 117, 25);
         pMoreInfoScreen_in.add(btnSubmit_in);
         btnSubmit_in.addActionListener(new NavigationListener());
     }
-    
+
     /*
-    * create the screen for more information to create the inmate
-    */
-    public void employeeMoreInfoScreen(){
+     * create the screen for more information to create the inmate
+     */
+    public void employeeMoreInfoScreen() {
         pMoreInfoScreen_emp = new JPanel();
         pMoreInfoScreen_emp.setBackground(new Color(250, 250, 250, 150));
         pFunctionScreen.add(pMoreInfoScreen_emp);
         pMoreInfoScreen_emp.setLayout(null);
-        
+
         lblCreateEmployee2 = new JLabel("Create Employee Continued");
         lblCreateEmployee2.setFont(new Font("Dialog", Font.BOLD, 24));
         lblCreateEmployee2.setBounds(40, 12, 350, 29);
         pMoreInfoScreen_emp.add(lblCreateEmployee2);
-         
+
         lblCreateUsername_emp = new JLabel("Create Username:");
         lblCreateUsername_emp.setBounds(40, 67, 120, 15);
         pMoreInfoScreen_emp.add(lblCreateUsername_emp);
-        
+
         txtCreateUsername_emp = new JTextField();
         txtCreateUsername_emp.setBounds(40, 82, 114, 19);
         pMoreInfoScreen_emp.add(txtCreateUsername_emp);
         txtCreateUsername_emp.setColumns(10);
-        
+
         lblVerifyPassword_emp = new JLabel("Verify Password");
         lblVerifyPassword_emp.setBounds(40, 108, 143, 15);
         pMoreInfoScreen_emp.add(lblVerifyPassword_emp);
-        
+
         lblCreatePassword_emp = new JLabel("Create Password");
         lblCreatePassword_emp.setBounds(40, 154, 143, 15);
         pMoreInfoScreen_emp.add(lblCreatePassword_emp);
-        
+
         btnCancel2_emp = new JButton("Cancel");
         btnCancel2_emp.setBounds(215, 375, 117, 25);
         pMoreInfoScreen_emp.add(btnCancel2_emp);
         btnCancel2_emp.addActionListener(new NavigationListener());
-        
+
         btnBack_emp = new JButton("Back");
-        btnBack_emp.setBounds(344,375,117, 25);
+        btnBack_emp.setBounds(344, 375, 117, 25);
         pMoreInfoScreen_emp.add(btnBack_emp);
         btnBack_emp.addActionListener(new NavigationListener());
-        
+
         btnSubmit_emp = new JButton("Submit");
         btnSubmit_emp.setBounds(473, 375, 117, 25);
         pMoreInfoScreen_emp.add(btnSubmit_emp);
@@ -636,7 +635,7 @@ public class PrisonSyncGitVersion extends JFrame {
         btnCancel_emp.setBounds(344, 375, 117, 25);
         pCreateEmployee.add(btnCancel_emp);
         btnCancel_emp.addActionListener(new NavigationListener());
-        
+
         btnContinue_emp = new JButton("Continue");
         btnContinue_emp.setBounds(473, 375, 117, 25);
         btnContinue_emp.addActionListener(new NavigationListener());
@@ -649,7 +648,7 @@ public class PrisonSyncGitVersion extends JFrame {
         txtDescription_emp = new JTextArea();
         txtDescription_emp.setBounds(40, 337, 246, 65);
         pCreateEmployee.add(txtDescription_emp);
-        
+
     }
 
     /*
@@ -754,7 +753,6 @@ public class PrisonSyncGitVersion extends JFrame {
          btnSSNSearch_emp = new JButton("Search");
          btnSSNSearch_emp.setBounds(483, 69, 83, 20);
          pViewEmployee.add(btnSSNSearch_emp);*/
-        
         txtView_emp = new JTextArea();
         txtView_emp.setEnabled(false);
         txtView_emp.setEditable(false);
@@ -827,7 +825,7 @@ public class PrisonSyncGitVersion extends JFrame {
             public void keyPressed(KeyEvent k) {
                 if (k.getKeyCode() == KeyEvent.VK_ENTER) {
 
-					//verify pLogin information
+                    //verify pLogin information
                     //go to menu screen
                     clearPanels();
                     pMainMenu.setVisible(true);
@@ -838,13 +836,13 @@ public class PrisonSyncGitVersion extends JFrame {
 
             @Override
             public void keyReleased(KeyEvent arg0) {
-				// TODO Auto-generated method stub
+                // TODO Auto-generated method stub
 
             }
 
             @Override
             public void keyTyped(KeyEvent arg0) {
-				// TODO Auto-generated method stub
+                // TODO Auto-generated method stub
 
             }
         });
@@ -945,6 +943,7 @@ public class PrisonSyncGitVersion extends JFrame {
     /*
      * set all jPanels in the card layout of create panel to false
      */
+
     public void clearVCPanels() {
         pCreateInmate.setVisible(false);
         pCreateEmployee.setVisible(false);
@@ -988,11 +987,11 @@ public class PrisonSyncGitVersion extends JFrame {
         }
 
     }
-    
+
     /*
-    this method generates a unique id number for each inmate created
-    */
-    public String generateUID(){
+     this method generates a unique id number for each inmate created
+     */
+    public String generateUID() {
         String uid = "";// = UUID.randomUUID().toString();
         return uid;
     }
@@ -1027,32 +1026,40 @@ public class PrisonSyncGitVersion extends JFrame {
             } else if (action.getSource() == btnPrisonMap) {
                 pFunctionScreen.setVisible(true);
             } else if (action.getSource() == btnCancel_in || action.getSource() == btnCancel2_in
-                     || action.getSource() == btnCancel_emp || action.getSource() == btnCancel2_emp){
+                    || action.getSource() == btnCancel_emp || action.getSource() == btnCancel2_emp) {
                 pMainMenu.setVisible(true);
-            }else if (action.getSource() == btnContinue_in){
+            } else if (action.getSource() == btnContinue_in) {
                 pFunctionScreen.setVisible(true);
                 pMoreInfoScreen_in.setVisible(true);
-            }else if (action.getSource() == btnContinue_emp){
+            } else if (action.getSource() == btnContinue_emp) {
                 pFunctionScreen.setVisible(true);
                 pMoreInfoScreen_emp.setVisible(true);
-            }else if(action.getSource() == btnBack_in){
+            } else if (action.getSource() == btnBack_in) {
                 pFunctionScreen.setVisible(true);
                 pCreateInmate.setVisible(true);
-            }else if(action.getSource() == btnBack_emp){
+            } else if (action.getSource() == btnBack_emp) {
                 pFunctionScreen.setVisible(true);
                 pCreateEmployee.setVisible(true);
-            }else if(action.getSource() == btnSubmit_in){
+            } else if (action.getSource() == btnSubmit_in) {
                 //create a new inmate object
-                
+                Inmate inmate = new Inmate();
+                System.out.println(inmate.toString());
+                //create new form for creating inmate
+                createInmateScreen();
                 pMainMenu.setVisible(true);
-            }else if(action.getSource() == btnSubmit_emp){
+            } else if (action.getSource() == btnSubmit_emp) {
                 //create a new employee object
-                
+                Employee employee = new Employee();
+                System.out.println(employee.toString());
+                System.out.println("Hello " + txtFirst_emp.getText());
+                //create new form for creating employee
+                createEmployeeScreen();
+
                 pMainMenu.setVisible(true);
-            }else if (action.getSource() == btnLogOut) {
+            } else if (action.getSource() == btnLogOut) {
 		//discard changes
 
-		//clear login info
+                //clear login info
                 //go to login screen
                 clearPanels();
                 pLogin.setVisible(true);
@@ -1060,4 +1067,311 @@ public class PrisonSyncGitVersion extends JFrame {
         }
 
     }
+
+    public JTextField getTxtUsername() {
+
+        return txtUsername;
+
+    }
+
+    public void setTxtUsername(JTextField txtUsername) {
+
+        this.txtUsername = txtUsername;
+
+    }
+
+    public JTextField getTxtPassword() {
+
+        return txtPassword;
+
+    }
+
+    public void setTxtPassword(JTextField txtPassword) {
+
+        this.txtPassword = txtPassword;
+
+    }
+
+    public String getTxtFirst_in() {
+
+        return txtFirst_in.getText();
+
+    }
+
+    public void setTxtFirst_in(JTextField txtFirst_in) {
+
+        this.txtFirst_in = txtFirst_in;
+
+    }
+
+    public String getTxtMidInit_in() {
+
+        return txtMidInit_in.getText();
+
+    }
+
+    public void setTxtMidInit_in(JTextField txtMidInit_in) {
+
+        this.txtMidInit_in = txtMidInit_in;
+
+    }
+
+    public String getTxtLast_in() {
+
+        return txtLast_in.getText();
+
+    }
+
+    public void setTxtLast_in(JTextField txtLast_in) {
+
+        this.txtLast_in = txtLast_in;
+
+    }
+
+    public String getTxtAddress_in() {
+
+        return txtAddress_in.getText();
+
+    }
+
+    public void setTxtAddress_in(JTextField txtAddress_in) {
+
+        this.txtAddress_in = txtAddress_in;
+
+    }
+
+    public String getTxtDOB_in() {
+
+        return txtDOB_in.getText();
+
+    }
+
+    public void setTxtDOB_in(JTextField txtDOB_in) {
+
+        this.txtDOB_in = txtDOB_in;
+
+    }
+
+    public String getTxtSSN_in() {
+
+        return txtSSN_in.getText();
+
+    }
+
+    public void setTxtSSN_in(JTextField txtSSN_in) {
+
+        this.txtSSN_in = txtSSN_in;
+
+    }
+
+    public String getTxtHeight_in() {
+
+        return txtHeight_in.getText();
+
+    }
+
+    public void setTxtHeight_in(JTextField txtHeight_in) {
+
+        this.txtHeight_in = txtHeight_in;
+
+    }
+
+    public String getTxtWeight_in() {
+
+        return txtWeight_in.getText();
+
+    }
+
+    public void setTxtWeight_in(JTextField txtWeight_in) {
+
+        this.txtWeight_in = txtWeight_in;
+
+    }
+
+    public String getTxtDescription_in() {
+
+        return txtDescription_in.getText();
+
+    }
+
+    public String getTxtFirst_emp() {
+        System.out.println(txtFirst_emp.getText().toString());
+        return txtFirst_emp.getText();
+
+    }
+
+    public void setTxtFirst_emp(JTextField txtFirst_emp) {
+
+        this.txtFirst_emp = txtFirst_emp;
+
+    }
+
+    public String getTxtMidInit_emp() {
+
+        return txtMidInit_emp.getText();
+
+    }
+
+    public void setTxtMidInit_emp(JTextField txtMidInit_emp) {
+
+        this.txtMidInit_emp = txtMidInit_emp;
+
+    }
+
+    public String getTxtLast_emp() {
+
+        return txtLast_emp.getText();
+
+    }
+
+    public void setTxtLast_emp(JTextField txtLast_emp) {
+
+        this.txtLast_emp = txtLast_emp;
+
+    }
+
+    public String getTxtAddress_emp() {
+
+        return txtAddress_emp.getText();
+
+    }
+
+    public void setTxtAddress_emp(JTextField txtAddress_emp) {
+
+        this.txtAddress_emp = txtAddress_emp;
+
+    }
+
+    public String getTxtDOB_emp() {
+
+        return txtDOB_emp.getText();
+
+    }
+
+    public void setTxtDOB_emp(JTextField txtDOB_emp) {
+
+        this.txtDOB_emp = txtDOB_emp;
+
+    }
+
+    public String getTxtSSN_emp() {
+
+        return txtSSN_emp.getText();
+
+    }
+
+    public void setTxtSSN_emp(JTextField txtSSN_emp) {
+
+        this.txtSSN_emp = txtSSN_emp;
+
+    }
+
+    public String getTxtHeight_emp() {
+
+        return txtHeight_emp.getText();
+
+    }
+
+    public void setTxtHeight_emp(JTextField txtHeight_emp) {
+
+        this.txtHeight_emp = txtHeight_emp;
+
+    }
+
+    public String getTxtWeight_emp() {
+
+        return txtWeight_emp.getText();
+
+    }
+
+    public void setTxtWeight_emp(JTextField txtWeight_emp) {
+
+        this.txtWeight_emp = txtWeight_emp;
+
+    }
+
+    public String getTxtDescription_emp() {
+
+        return txtDescription_emp.getText();
+
+    }
+
+    public void setTxtDescription_emp(JTextArea txtDescription_emp) {
+
+        this.txtDescription_emp = txtDescription_emp;
+
+    }
+
+    public String getTxtName_in() {
+
+        return txtName_in.getText();
+
+    }
+
+    public void setTxtName_in(JTextField txtName_in) {
+
+        this.txtName_in = txtName_in;
+
+    }
+
+    public String getTxtSSNSearch_in() {
+
+        return txtSSNSearch_in.getText();
+
+    }
+
+    public void setTxtSSNSearch_in(JTextField txtSSNSearch_in) {
+
+        this.txtSSNSearch_in = txtSSNSearch_in;
+
+    }
+
+    public JTextArea getTxtView_in() {
+
+        return txtView_in;
+
+    }
+
+    public void setTxtView_in(JTextArea txtView_in) {
+
+        this.txtView_in = txtView_in;
+
+    }
+
+    public JTextField getTxtName_emp() {
+
+        return txtName_emp;
+
+    }
+
+    public void setTxtName_emp(JTextField txtName_emp) {
+
+        this.txtName_emp = txtName_emp;
+
+    }
+
+    public JTextField getTxtSSNSearch_emp() {
+
+        return txtSSNSearch_emp;
+
+    }
+
+    public void setTxtSSNSearch_emp(JTextField txtSSNSearch_emp) {
+
+        this.txtSSNSearch_emp = txtSSNSearch_emp;
+
+    }
+
+    public JTextArea getTxtView_emp() {
+
+        return txtView_emp;
+
+    }
+
+    public void setTxtView_emp(JTextArea txtView_emp) {
+
+        this.txtView_emp = txtView_emp;
+
+    }
+
 }
