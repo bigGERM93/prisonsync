@@ -41,6 +41,16 @@ import javax.swing.JTextArea;
 public class PrisonSyncGitVersion extends JFrame {
 
     //class variables
+    private String first;
+    private String middle;
+    private String last;
+    private String address;
+    private String dob;
+    private String ssn;
+    private String height;
+    private String weight;
+    private String desc;
+
     private JPanel contentPane;
     private JTextField txtUsername;
     private JTextField txtPassword;
@@ -991,13 +1001,56 @@ public class PrisonSyncGitVersion extends JFrame {
                 pFunctionScreen.setVisible(true);
                 pCreateEmployee.setVisible(true);
             } else if (action.getSource() == btnSubmit_in) {
+                pFunctionScreen.setVisible(true);
+
+                pCreateInmate.setVisible(true);
+
+                first = txtFirst_in.getText();
+
+                middle = txtMidInit_in.getText();
+
+                last = txtLast_in.getText();
+
+                address = txtAddress_in.getText();
+
+                dob = txtDOB_in.getText();
+
+                ssn = txtSSN_in.getText();
+
+                height = txtHeight_in.getText();
+
+                weight = txtWeight_in.getText();
+
+                desc = txtDescription_in.getText();
                 //create a new inmate object
+
                 Inmate inmate = new Inmate();
                 System.out.println(inmate.toString());
                 //create new form for creating inmate
                 createInmateScreen();
                 pMainMenu.setVisible(true);
             } else if (action.getSource() == btnSubmit_emp) {
+                pFunctionScreen.setVisible(true);
+
+                pCreateEmployee.setVisible(true);
+
+                first = txtFirst_emp.getText();
+
+                middle = txtMidInit_emp.getText();
+
+                last = txtLast_emp.getText();
+
+                address = txtAddress_emp.getText();
+
+                dob = txtDOB_emp.getText();
+
+                ssn = txtSSN_emp.getText();
+
+                height = txtHeight_emp.getText();
+
+                weight = txtWeight_emp.getText();
+
+                desc = txtDescription_emp.getText();
                 //create a new employee object
                 Employee employee = new Employee();
                 System.out.println(employee.toString());
@@ -1018,261 +1071,111 @@ public class PrisonSyncGitVersion extends JFrame {
 
     }
 
-    public JTextField getTxtUsername() {
+    public String getFirst() {
 
-        return txtUsername;
-
-    }
-
-    public void setTxtUsername(JTextField txtUsername) {
-
-        this.txtUsername = txtUsername;
+        return first;
 
     }
 
-    public JTextField getTxtPassword() {
+    public void setFirst(String first) {
 
-        return txtPassword;
-
-    }
-
-    public void setTxtPassword(JTextField txtPassword) {
-
-        this.txtPassword = txtPassword;
+        this.first = first;
 
     }
 
-    public String getTxtFirst_in() {
+    public String getMiddle() {
 
-        return txtFirst_in.getText();
-
-    }
-
-    public void setTxtFirst_in(JTextField txtFirst_in) {
-
-        this.txtFirst_in = txtFirst_in;
+        return middle;
 
     }
 
-    public String getTxtMidInit_in() {
+    public void setMiddle(String middle) {
 
-        return txtMidInit_in.getText();
-
-    }
-
-    public void setTxtMidInit_in(JTextField txtMidInit_in) {
-
-        this.txtMidInit_in = txtMidInit_in;
+        this.middle = middle;
 
     }
 
-    public String getTxtLast_in() {
+    public String getLast() {
 
-        return txtLast_in.getText();
-
-    }
-
-    public void setTxtLast_in(JTextField txtLast_in) {
-
-        this.txtLast_in = txtLast_in;
+        return last;
 
     }
 
-    public String getTxtAddress_in() {
+    public void setLast(String last) {
 
-        return txtAddress_in.getText();
-
-    }
-
-    public void setTxtAddress_in(JTextField txtAddress_in) {
-
-        this.txtAddress_in = txtAddress_in;
+        this.last = last;
 
     }
 
-    public String getTxtDOB_in() {
+    public String getAddress() {
 
-        return txtDOB_in.getText();
-
-    }
-
-    public void setTxtDOB_in(JTextField txtDOB_in) {
-
-        this.txtDOB_in = txtDOB_in;
+        return address;
 
     }
 
-    public String getTxtSSN_in() {
+    public void setAddress(String address) {
 
-        return txtSSN_in.getText();
-
-    }
-
-    public void setTxtSSN_in(JTextField txtSSN_in) {
-
-        this.txtSSN_in = txtSSN_in;
+        this.address = address;
 
     }
 
-    public String getTxtHeight_in() {
+    public String getDob() {
 
-        return txtHeight_in.getText();
-
-    }
-
-    public void setTxtHeight_in(JTextField txtHeight_in) {
-
-        this.txtHeight_in = txtHeight_in;
+        return dob;
 
     }
 
-    public String getTxtWeight_in() {
+    public void setDob(String dob) {
 
-        return txtWeight_in.getText();
-
-    }
-
-    public void setTxtWeight_in(JTextField txtWeight_in) {
-
-        this.txtWeight_in = txtWeight_in;
+        this.dob = dob;
 
     }
 
-    public String getTxtDescription_in() {
+    public String getSsn() {
 
-        return txtDescription_in.getText();
-
-    }
-
-    public String getTxtFirst_emp() {
-        System.out.println(txtFirst_emp.getText().toString());
-        return txtFirst_emp.getText();
+        return ssn;
 
     }
 
-    public void setTxtFirst_emp(JTextField txtFirst_emp) {
+    public void setSsn(String ssn) {
 
-        this.txtFirst_emp = txtFirst_emp;
-
-    }
-
-    public String getTxtMidInit_emp() {
-
-        return txtMidInit_emp.getText();
+        this.ssn = ssn;
 
     }
 
-    public void setTxtMidInit_emp(JTextField txtMidInit_emp) {
+    public String getHeightIn() {
 
-        this.txtMidInit_emp = txtMidInit_emp;
-
-    }
-
-    public String getTxtLast_emp() {
-
-        return txtLast_emp.getText();
+        return height;
 
     }
 
-    public void setTxtLast_emp(JTextField txtLast_emp) {
+    public void setHeight(String height) {
 
-        this.txtLast_emp = txtLast_emp;
-
-    }
-
-    public String getTxtAddress_emp() {
-
-        return txtAddress_emp.getText();
+        this.height = height;
 
     }
 
-    public void setTxtAddress_emp(JTextField txtAddress_emp) {
+    public String getWeight() {
 
-        this.txtAddress_emp = txtAddress_emp;
-
-    }
-
-    public String getTxtDOB_emp() {
-
-        return txtDOB_emp.getText();
+        return weight;
 
     }
 
-    public void setTxtDOB_emp(JTextField txtDOB_emp) {
+    public void setWeight(String weight) {
 
-        this.txtDOB_emp = txtDOB_emp;
-
-    }
-
-    public String getTxtSSN_emp() {
-
-        return txtSSN_emp.getText();
+        this.weight = weight;
 
     }
 
-    public void setTxtSSN_emp(JTextField txtSSN_emp) {
+    public String getDesc() {
 
-        this.txtSSN_emp = txtSSN_emp;
-
-    }
-
-    public String getTxtHeight_emp() {
-
-        return txtHeight_emp.getText();
+        return desc;
 
     }
 
-    public void setTxtHeight_emp(JTextField txtHeight_emp) {
+    public void setDesc(String desc) {
 
-        this.txtHeight_emp = txtHeight_emp;
-
-    }
-
-    public String getTxtWeight_emp() {
-
-        return txtWeight_emp.getText();
-
-    }
-
-    public void setTxtWeight_emp(JTextField txtWeight_emp) {
-
-        this.txtWeight_emp = txtWeight_emp;
-
-    }
-
-    public String getTxtDescription_emp() {
-
-        return txtDescription_emp.getText();
-
-    }
-
-    public void setTxtDescription_emp(JTextArea txtDescription_emp) {
-
-        this.txtDescription_emp = txtDescription_emp;
-
-    }
-
-    public String getTxtName_in() {
-
-        return txtName_in.getText();
-
-    }
-
-    public void setTxtName_in(JTextField txtName_in) {
-
-        this.txtName_in = txtName_in;
-
-    }
-
-    public String getTxtSSNSearch_in() {
-
-        return txtSSNSearch_in.getText();
-
-    }
-
-    public void setTxtSSNSearch_in(JTextField txtSSNSearch_in) {
-
-        this.txtSSNSearch_in = txtSSNSearch_in;
+        this.desc = desc;
 
     }
 
@@ -1288,30 +1191,6 @@ public class PrisonSyncGitVersion extends JFrame {
 
     }
 
-    public JTextField getTxtName_emp() {
-
-        return txtName_emp;
-
-    }
-
-    public void setTxtName_emp(JTextField txtName_emp) {
-
-        this.txtName_emp = txtName_emp;
-
-    }
-
-    public JTextField getTxtSSNSearch_emp() {
-
-        return txtSSNSearch_emp;
-
-    }
-
-    public void setTxtSSNSearch_emp(JTextField txtSSNSearch_emp) {
-
-        this.txtSSNSearch_emp = txtSSNSearch_emp;
-
-    }
-
     public JTextArea getTxtView_emp() {
 
         return txtView_emp;
@@ -1323,5 +1202,4 @@ public class PrisonSyncGitVersion extends JFrame {
         this.txtView_emp = txtView_emp;
 
     }
-
 }
