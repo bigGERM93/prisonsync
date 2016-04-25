@@ -2,7 +2,7 @@ package prisonsyncgitversion;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
-
+import java.awt.Image;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -784,6 +784,8 @@ public class PrisonSyncGitVersion extends JFrame {
             @Override
             public void keyPressed(KeyEvent k) {
                 if (k.getKeyCode() == KeyEvent.VK_ENTER) {
+					
+					Session currentSession = new Session(Integer.parseInt(txtUsername.getText()),txtPassword.getText());
 
                     //verify pLogin information
                     //go to menu screen
