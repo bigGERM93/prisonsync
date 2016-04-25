@@ -1,49 +1,9 @@
 package prisonsyncgitversion;
 
-import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.util.ConcurrentModificationException;
-
-import javax.imageio.ImageIO;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -59,7 +19,6 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -68,19 +27,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
-import javax.swing.JSeparator;
 import javax.swing.JPasswordField;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.UIManager;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JFormattedTextField;
 
 /**
  *
@@ -826,6 +778,8 @@ public class PrisonSyncGitVersion extends JFrame {
             @Override
             public void keyPressed(KeyEvent k) {
                 if (k.getKeyCode() == KeyEvent.VK_ENTER) {
+					
+					Session currentSession = new Session(Integer.parseInt(txtUsername.getText()),txtPassword.getText());
 
 					//verify pLogin information
                     //go to menu screen
