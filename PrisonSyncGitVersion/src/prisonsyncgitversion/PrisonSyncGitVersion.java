@@ -2,7 +2,6 @@ package prisonsyncgitversion;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Image;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -59,16 +58,6 @@ public class PrisonSyncGitVersion extends JFrame {
     }
 
     //class variables
-    private String first;
-    private String middle;
-    private String last;
-    private String address;
-    private String dob;
-    private String ssn;
-    private String height;
-    private String weight;
-    private String desc;
-
     private JPanel contentPane;
     private JTextField txtUsername;
     private JTextField txtPassword;
@@ -150,23 +139,18 @@ public class PrisonSyncGitVersion extends JFrame {
     private JLabel lblName;
     private JTextField txtName_in;
     private JButton btnName_in;
-    private JLabel lblSSNSearch_in;
-    private JTextField txtSSNSearch_in;
     private JButton btnBack_in;
     private JTextArea txtView_in;
-    private JButton btnBack;
+    private JButton btnVBack_in;
+    private JButton btnVBack_emp;
     private JPanel pViewEmployee;
     private JLabel lblViewEmployee;
     private JLabel lblName_emp;
     private JTextField txtName_emp;
     private JButton btnNameSearch_emp;
-    private JLabel lblSSNSearch_emp;
-    private JTextField txtSSNSearch_emp;
-    private JButton btnSSNSearch_emp;
     private JTextArea txtView_emp;
     private JButton btnBack_emp;
     private JPanel pMoreInfoScreen_in;
-    private JLabel lblIDnumber_in;
     private JLabel lblCrimes_in;
     private JLabel lblThreatLevel_in;
     private JButton btnContinue_in;
@@ -685,9 +669,9 @@ public class PrisonSyncGitVersion extends JFrame {
         txtView_in.setBounds(41, 112, 527, 233);
         pViewInmate.add(txtView_in);
 
-        btnBack = new JButton("Back");
-        btnBack.setBounds(451, 373, 117, 25);
-        pViewInmate.add(btnBack);
+        btnVBack_in = new JButton("Back");
+        btnVBack_in.setBounds(451, 373, 117, 25);
+        pViewInmate.add(btnVBack_in);
 
         pCreateActivity = new JPanel();
         pFunctionScreen.add(pCreateActivity, "name_384699661729607");
@@ -695,8 +679,8 @@ public class PrisonSyncGitVersion extends JFrame {
         pViewActivities = new JPanel();
         pFunctionScreen.add(pViewActivities, "name_384761728106314");
 
-        pPrisonMap = new JPanel();
-        pFunctionScreen.add(pPrisonMap, "name_384807218945181");
+       // pPrisonMap = new JPanel();
+       // pFunctionScreen.add(pPrisonMap, "name_384807218945181");
 
     }
 
@@ -735,9 +719,9 @@ public class PrisonSyncGitVersion extends JFrame {
         JScrollPane scroll = new JScrollPane(txtView_emp);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        btnBack_emp = new JButton("Back");
-        btnBack_emp.setBounds(451, 373, 117, 25);
-        pViewEmployee.add(btnBack_emp);
+        btnVBack_emp = new JButton("Back");
+        btnVBack_emp.setBounds(451, 373, 117, 25);
+        pViewEmployee.add(btnVBack_emp);
     }
     /*
     * create the pLogin screen
@@ -946,6 +930,7 @@ public class PrisonSyncGitVersion extends JFrame {
         String uid = "";// = UUID.randomUUID().toString();
         return uid;
     }    
+    
     public JTextArea getTxtView_in() {
         
         return txtView_in;
@@ -1043,24 +1028,6 @@ public class PrisonSyncGitVersion extends JFrame {
                 pFunctionScreen.setVisible(true);
 
                 pCreateInmate.setVisible(true);
-
-                first = txtFirst_in.getText();
-
-                middle = txtMidInit_in.getText();
-
-                last = txtLast_in.getText();
-
-                address = txtAddress_in.getText();
-
-                dob = txtDOB_in.getText();
-
-                ssn = txtSSN_in.getText();
-
-                height = txtHeight_in.getText();
-
-                weight = txtWeight_in.getText();
-
-                desc = txtDescription_in.getText();
                 //create a new inmate object
 
                 Inmate inmate = new Inmate(txtFirst_in.getText(), 
