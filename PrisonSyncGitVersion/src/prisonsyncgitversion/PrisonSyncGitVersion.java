@@ -30,6 +30,7 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
+import javax.swing.BorderFactory;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -39,6 +40,23 @@ import javax.swing.JTextArea;
  * @author glrob_000
  */
 public class PrisonSyncGitVersion extends JFrame {
+
+    /**
+     * Launch the prison system application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    PrisonSyncGitVersion frame = new PrisonSyncGitVersion();
+                    frame.setVisible(true);
+                    //frame.setResizable(false);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
     //class variables
     private String first;
@@ -148,9 +166,9 @@ public class PrisonSyncGitVersion extends JFrame {
     private JTextArea txtView_emp;
     private JButton btnBack_emp;
     private JPanel pMoreInfoScreen_in;
-    private JLabel lblCreateUsername_in;
-    private JLabel lblCreatePassword_in;
-    private JLabel lblVerifyPassword_in;
+    private JLabel lblIDnumber_in;
+    private JLabel lblCrimes_in;
+    private JLabel lblThreatLevel_in;
     private JButton btnContinue_in;
     private JButton btnCancel_in;
     private JButton btnCancel2_in;
@@ -168,23 +186,11 @@ public class PrisonSyncGitVersion extends JFrame {
     private JLabel lblCreateEmployee2;
     private JButton btnCancel2_emp;
     private JButton btnContinue_emp;
-
-    /**
-     * Launch the prison system application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    PrisonSyncGitVersion frame = new PrisonSyncGitVersion();
-                    frame.setVisible(true);
-                    //frame.setResizable(false);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+    private JLabel lblIdNumber_in;
+    private JTextField txtIdNumber_in;
+    private JTextField txtCrimes_in;
+    private JTextField txtThreatLevel_in;
+    
 
     /**
      * Create the application frame
@@ -244,7 +250,7 @@ public class PrisonSyncGitVersion extends JFrame {
 
         //view menu
         mView = new JMenu("View");
-		//add menu items under mView menu
+        //add menu items under mView menu
 
         //add mView to menu bar
         menuBar.add(mView);
@@ -254,8 +260,8 @@ public class PrisonSyncGitVersion extends JFrame {
     }
 
     /*
-     * create the create employee screen
-     */
+    * create the create employee screen
+    */
     public void functionScreen() {
         pFunctionScreen = new PS_Panel();
         pFunctionScreen.setBackground(SystemColor.windowBorder);
@@ -274,8 +280,8 @@ public class PrisonSyncGitVersion extends JFrame {
     }
 
     /*
-     * this method create the screen to add a new inmate to database
-     */
+    * this method create the screen to add a new inmate to database
+    */
     public void createInmateScreen() {
         pCreateInmate = new JPanel();
         pCreateInmate.setBackground(new Color(250, 250, 250, 150));
@@ -402,8 +408,8 @@ public class PrisonSyncGitVersion extends JFrame {
     }
 
     /*
-     * create the screen to gather more information to create the employee
-     */
+    * create the screen to gather more information to create the employee
+    */
     public void inmateMoreInfoScreen() {
         pMoreInfoScreen_in = new JPanel();
         pMoreInfoScreen_in.setBackground(new Color(250, 250, 250, 150));
@@ -415,13 +421,33 @@ public class PrisonSyncGitVersion extends JFrame {
         lblCreateInmate2.setBounds(40, 12, 350, 29);
         pMoreInfoScreen_in.add(lblCreateInmate2);
 
-        lblCreateUsername_in = new JLabel("Create Username:");
-        lblCreateUsername_in.setBounds(40, 67, 120, 15);
-        pMoreInfoScreen_in.add(lblCreateUsername_in);
+        lblIdNumber_in = new JLabel("Generated ID:");
+        lblIdNumber_in.setBounds(40, 67, 120, 15);
+        pMoreInfoScreen_in.add(lblIdNumber_in);
 
-        lblCreatePassword_in = new JLabel("Create Password");
-        lblCreatePassword_in.setBounds(40, 154, 143, 15);
-        pMoreInfoScreen_in.add(lblCreatePassword_in);
+        txtIdNumber_in = new JTextField();
+        txtIdNumber_in.setBounds(40, 82, 114, 19);
+        txtIdNumber_in.setEditable(false);
+        pMoreInfoScreen_in.add(txtIdNumber_in);
+        txtIdNumber_in.setColumns(10);
+
+        lblCrimes_in = new JLabel("Crimes:");
+        lblCrimes_in.setBounds(40, 154, 143, 15);
+        pMoreInfoScreen_in.add(lblCrimes_in);
+
+        txtCrimes_in = new JTextField();
+        txtCrimes_in.setBounds(40, 169, 114, 19);
+        pMoreInfoScreen_in.add(txtCrimes_in);
+        txtCrimes_in.setColumns(10);
+
+        lblThreatLevel_in = new JLabel("Threat Level:");
+        lblThreatLevel_in.setBounds(40, 108, 143, 15);
+        pMoreInfoScreen_in.add(lblThreatLevel_in);
+
+        txtThreatLevel_in = new JTextField();
+        txtThreatLevel_in.setBounds(40, 123, 114, 19);
+        pMoreInfoScreen_in.add(txtThreatLevel_in);
+        txtThreatLevel_in.setColumns(10);
 
         btnCancel2_in = new JButton("Cancel");
         btnCancel2_in.setBounds(215, 375, 117, 25);
@@ -440,8 +466,8 @@ public class PrisonSyncGitVersion extends JFrame {
     }
 
     /*
-     * create the screen for more information to create the inmate
-     */
+    * create the screen for more information to create the inmate
+    */
     public void employeeMoreInfoScreen() {
         pMoreInfoScreen_emp = new JPanel();
         pMoreInfoScreen_emp.setBackground(new Color(250, 250, 250, 150));
@@ -462,13 +488,23 @@ public class PrisonSyncGitVersion extends JFrame {
         pMoreInfoScreen_emp.add(txtCreateUsername_emp);
         txtCreateUsername_emp.setColumns(10);
 
-        lblVerifyPassword_emp = new JLabel("Verify Password");
+        lblCreatePassword_emp = new JLabel("Create Password:");
+        lblCreatePassword_emp.setBounds(40, 154, 143, 15);
+        pMoreInfoScreen_emp.add(lblCreatePassword_emp);
+
+        txtCreatePassword_emp = new JTextField();
+        txtCreatePassword_emp.setBounds(40, 169, 114, 19);
+        pMoreInfoScreen_emp.add(txtCreatePassword_emp);
+        txtCreatePassword_emp.setColumns(10);
+
+        lblVerifyPassword_emp = new JLabel("Verify Password:");
         lblVerifyPassword_emp.setBounds(40, 108, 143, 15);
         pMoreInfoScreen_emp.add(lblVerifyPassword_emp);
 
-        lblCreatePassword_emp = new JLabel("Create Password");
-        lblCreatePassword_emp.setBounds(40, 154, 143, 15);
-        pMoreInfoScreen_emp.add(lblCreatePassword_emp);
+        txtVerifyPassword_emp = new JTextField();
+        txtVerifyPassword_emp.setBounds(40, 123, 114, 19);
+        pMoreInfoScreen_emp.add(txtVerifyPassword_emp);
+        txtVerifyPassword_emp.setColumns(10);
 
         btnCancel2_emp = new JButton("Cancel");
         btnCancel2_emp.setBounds(215, 375, 117, 25);
@@ -487,8 +523,8 @@ public class PrisonSyncGitVersion extends JFrame {
     }
 
     /*
-     * this method creates the screen to add a new employee
-     */
+    * this method creates the screen to add a new employee
+    */
     public void createEmployeeScreen() {
         pCreateEmployee = new JPanel();
         pCreateEmployee.setLayout(null);
@@ -538,6 +574,7 @@ public class PrisonSyncGitVersion extends JFrame {
 
         lblPicture_emp = new JLabel("Upload Picture");
         lblPicture_emp.setHorizontalAlignment(SwingConstants.CENTER);
+        lblPicture_emp.setBorder(BorderFactory.createLineBorder(Color.black));
         lblPicture_emp.setBackground(Color.WHITE);
         lblPicture_emp.setBounds(365, 87, 205, 260);
         pCreateEmployee.add(lblPicture_emp);
@@ -612,8 +649,8 @@ public class PrisonSyncGitVersion extends JFrame {
     }
 
     /*
-     * this method creates the screen to view inmates
-     */
+    * this method creates the screen to view inmates
+    */
     public void viewInmateScreen() {
         pViewInmate = new JPanel();
         pFunctionScreen.add(pViewInmate, "name_384628246847050");
@@ -642,18 +679,6 @@ public class PrisonSyncGitVersion extends JFrame {
         btnName_in.setBounds(217, 71, 83, 20);
         pViewInmate.add(btnName_in);
 
-        /*lblSSNSearch_in = new JLabel("SSN:");
-         lblSSNSearch_in.setBounds(317, 74, 100, 15);
-         pViewInmate.add(lblSSNSearch_in);
-		
-         txtSSNSearch_in = new JTextField();
-         txtSSNSearch_in.setBounds(357, 72, 114, 19);
-         pViewInmate.add(txtSSNSearch_in);
-         txtSSNSearch_in.setColumns(10);
-		
-         btnBack_in = new JButton("Search");
-         btnBack_in.setBounds(483, 69, 83, 20);
-         pViewInmate.add(btnBack_in);*/
         txtView_in = new JTextArea();
         txtView_in.setEnabled(false);
         txtView_in.setEditable(false);
@@ -676,8 +701,8 @@ public class PrisonSyncGitVersion extends JFrame {
     }
 
     /*
-     * 
-     */
+    * this method creates the view employee screen
+    */
     public void viewEmployeeScreen() {
         pViewEmployee = new JPanel();
         pViewEmployee.setLayout(null);
@@ -701,18 +726,6 @@ public class PrisonSyncGitVersion extends JFrame {
         btnNameSearch_emp.setBounds(217, 71, 83, 20);
         pViewEmployee.add(btnNameSearch_emp);
 
-        /*lblSSNSearch_emp = new JLabel("SSN:");
-         lblSSNSearch_emp.setBounds(317, 74, 100, 15);
-         pViewEmployee.add(lblSSNSearch_emp);
-		
-         txtSSNSearch_emp = new JTextField();
-         txtSSNSearch_emp.setColumns(10);
-         txtSSNSearch_emp.setBounds(357, 72, 114, 19);
-         pViewEmployee.add(txtSSNSearch_emp);
-		
-         btnSSNSearch_emp = new JButton("Search");
-         btnSSNSearch_emp.setBounds(483, 69, 83, 20);
-         pViewEmployee.add(btnSSNSearch_emp);*/
         txtView_emp = new JTextArea();
         txtView_emp.setEnabled(false);
         txtView_emp.setEditable(false);
@@ -727,9 +740,9 @@ public class PrisonSyncGitVersion extends JFrame {
         pViewEmployee.add(btnBack_emp);
     }
     /*
-     * create the pLogin screen 
-     */
-
+    * create the pLogin screen
+    */
+    
     public void createpLoginScreen() {
         //create components for pLogin screen
         lTitle = new JLabel("Prison Sync");
@@ -784,8 +797,8 @@ public class PrisonSyncGitVersion extends JFrame {
             @Override
             public void keyPressed(KeyEvent k) {
                 if (k.getKeyCode() == KeyEvent.VK_ENTER) {
-					
-					Session currentSession = new Session(Integer.parseInt(txtUsername.getText()),txtPassword.getText());
+                    
+                    // Session currentSession = new Session(Integer.parseInt(txtUsername.getText()), txtPassword.getText());
 
                     //verify pLogin information
                     //go to menu screen
@@ -813,11 +826,11 @@ public class PrisonSyncGitVersion extends JFrame {
         pLogin = new PS_Panel();
 
         /*
-         passwordField = new JPasswordField("Password");
-         passwordField.setBounds(101,450, 187, 30);
-         pLogin.add(passwordField);
-         pLogin.setVisible(true);
-         */
+        passwordField = new JPasswordField("Password");
+        passwordField.setBounds(101,450, 187, 30);
+        pLogin.add(passwordField);
+        pLogin.setVisible(true);
+        */
         pLogin.setBackground(Color.gray);
         pLogin.add(lTitle);
         pLogin.add(txtPassword);
@@ -832,9 +845,10 @@ public class PrisonSyncGitVersion extends JFrame {
         lblNewLabel.setVisible(false);
     }
 
+    
     /*
-     * create the menu screen
-     */
+    * create the menu screen
+    */
     public void createMainMenuScreen() {
         pMainMenu = new PS_Panel();
         pMainMenu.setBorder(new EmptyBorder(80, 150, 80, 150));
@@ -903,9 +917,9 @@ public class PrisonSyncGitVersion extends JFrame {
         btnLogOut.addActionListener(new NavigationListener());
     }
     /*
-     * set all jPanels in the card layout of create panel to false
-     */
-
+    * set all jPanels in the card layout of create panel to false
+    */
+    
     public void clearVCPanels() {
         pCreateInmate.setVisible(false);
         pCreateEmployee.setVisible(false);
@@ -915,7 +929,7 @@ public class PrisonSyncGitVersion extends JFrame {
         pMoreInfoScreen_emp.setVisible(false);
     }
     /*
-     * set all jpanels in card layout to not visible
+    * set all jpanels in card layout to not visible
      */
 
     public void clearPanels() {
@@ -923,10 +937,153 @@ public class PrisonSyncGitVersion extends JFrame {
         pLogin.setVisible(false);
         pFunctionScreen.setVisible(false);
     }
-
+    
+    
     /*
-     * action listener for the menu bar to perform proper action
-     */
+    this method generates a unique id number for each inmate created
+    */
+    public String generateUID() {
+        String uid = "";// = UUID.randomUUID().toString();
+        return uid;
+    }
+
+
+    public String getFirst() {
+        
+        return first;
+
+    }
+
+
+    public void setFirst(String first) {
+
+        this.first = first;
+
+    }
+    
+    public String getMiddle() {
+
+        return middle;
+
+    }
+    
+    public void setMiddle(String middle) {
+
+        this.middle = middle;
+
+    }
+
+    public String getLast() {
+        
+        return last;
+
+    }
+
+    public void setLast(String last) {
+        
+        this.last = last;
+
+    }
+
+    public String getAddress() {
+        
+        return address;
+        
+    }
+    
+    public void setAddress(String address) {
+
+        this.address = address;
+
+    }
+
+    public String getDob() {
+
+        return dob;
+
+    }
+    
+    public void setDob(String dob) {
+        
+        this.dob = dob;
+        
+    }
+    
+    public String getSsn() {
+        
+        return ssn;
+        
+    }
+    
+    public void setSsn(String ssn) {
+        
+        this.ssn = ssn;
+        
+    }
+    
+    public String getHeightIn() {
+        
+        return height;
+        
+    }
+    
+    public void setHeight(String height) {
+        
+        this.height = height;
+        
+    }
+    
+    public String getWeight() {
+        
+        return weight;
+        
+    }
+    
+    public void setWeight(String weight) {
+        
+        this.weight = weight;
+        
+    }
+    
+    public String getDesc() {
+        
+        return desc;
+        
+    }
+    
+    public void setDesc(String desc) {
+        
+        this.desc = desc;
+        
+    }
+    
+    public JTextArea getTxtView_in() {
+        
+        return txtView_in;
+        
+    }
+    
+    public void setTxtView_in(JTextArea txtView_in) {
+        
+        this.txtView_in = txtView_in;
+        
+    }
+    
+    public JTextArea getTxtView_emp() {
+        
+        return txtView_emp;
+        
+    }
+    
+    public void setTxtView_emp(JTextArea txtView_emp) {
+        
+        this.txtView_emp = txtView_emp;
+        
+    }
+    
+    /*
+    * action listener for the menu bar to perform proper action
+    */
     public class MenuListener implements ActionListener {
 
         @Override
@@ -947,20 +1104,11 @@ public class PrisonSyncGitVersion extends JFrame {
             }
 
         }
-
     }
 
     /*
-     this method generates a unique id number for each inmate created
-     */
-    public String generateUID() {
-        String uid = "";// = UUID.randomUUID().toString();
-        return uid;
-    }
-
-    /*
-     * action listener for the main menu to display proper screen
-     */
+    * action listener for the main menu to display proper screen
+    */
     public class NavigationListener implements ActionListener {
 
         @Override
@@ -1032,35 +1180,20 @@ public class PrisonSyncGitVersion extends JFrame {
                 createInmateScreen();
                 pMainMenu.setVisible(true);
             } else if (action.getSource() == btnSubmit_emp) {
-                pFunctionScreen.setVisible(true);
+                if(!txtCreatePassword_emp.getText().equals(null) && 
+                        txtCreatePassword_emp.getText().equals(txtVerifyPassword_emp.getText())){
+                    pFunctionScreen.setVisible(true);
 
-                pCreateEmployee.setVisible(true);
+                    pCreateEmployee.setVisible(true);
+                    //create a new employee object
+                    Employee employee = new Employee(txtFirst_emp.getText());
+                    System.out.println(employee.toString());
 
-                first = txtFirst_emp.getText();
+                    //create new form for creating employee
+                    createEmployeeScreen();
 
-                middle = txtMidInit_emp.getText();
-
-                last = txtLast_emp.getText();
-
-                address = txtAddress_emp.getText();
-
-                dob = txtDOB_emp.getText();
-
-                ssn = txtSSN_emp.getText();
-
-                height = txtHeight_emp.getText();
-
-                weight = txtWeight_emp.getText();
-
-                desc = txtDescription_emp.getText();
-                //create a new employee object
-                Employee employee = new Employee();
-                System.out.println(employee.toString());
-                System.out.println("Hello " + txtFirst_emp.getText());
-                //create new form for creating employee
-                createEmployeeScreen();
-
-                pMainMenu.setVisible(true);
+                    pMainMenu.setVisible(true);
+                }
             } else if (action.getSource() == btnLogOut) {
 		//discard changes
 
@@ -1070,138 +1203,5 @@ public class PrisonSyncGitVersion extends JFrame {
                 pLogin.setVisible(true);
             }
         }
-
-    }
-
-    public String getFirst() {
-
-        return first;
-
-    }
-
-    public void setFirst(String first) {
-
-        this.first = first;
-
-    }
-
-    public String getMiddle() {
-
-        return middle;
-
-    }
-
-    public void setMiddle(String middle) {
-
-        this.middle = middle;
-
-    }
-
-    public String getLast() {
-
-        return last;
-
-    }
-
-    public void setLast(String last) {
-
-        this.last = last;
-
-    }
-
-    public String getAddress() {
-
-        return address;
-
-    }
-
-    public void setAddress(String address) {
-
-        this.address = address;
-
-    }
-
-    public String getDob() {
-
-        return dob;
-
-    }
-
-    public void setDob(String dob) {
-
-        this.dob = dob;
-
-    }
-
-    public String getSsn() {
-
-        return ssn;
-
-    }
-
-    public void setSsn(String ssn) {
-
-        this.ssn = ssn;
-
-    }
-
-    public String getHeightIn() {
-
-        return height;
-
-    }
-
-    public void setHeight(String height) {
-
-        this.height = height;
-
-    }
-
-    public String getWeight() {
-
-        return weight;
-
-    }
-
-    public void setWeight(String weight) {
-
-        this.weight = weight;
-
-    }
-
-    public String getDesc() {
-
-        return desc;
-
-    }
-
-    public void setDesc(String desc) {
-
-        this.desc = desc;
-
-    }
-
-    public JTextArea getTxtView_in() {
-
-        return txtView_in;
-
-    }
-
-    public void setTxtView_in(JTextArea txtView_in) {
-
-        this.txtView_in = txtView_in;
-
-    }
-
-    public JTextArea getTxtView_emp() {
-
-        return txtView_emp;
-
-    }
-
-    public void setTxtView_emp(JTextArea txtView_emp) {
-
-        this.txtView_emp = txtView_emp;
-
     }
 }
