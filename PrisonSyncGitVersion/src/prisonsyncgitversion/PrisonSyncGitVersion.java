@@ -261,7 +261,7 @@ public class PrisonSyncGitVersion extends JFrame {
         viewEmployeeScreen();
         inmateMoreInfoScreen();
         employeeMoreInfoScreen();
-    }
+    }   
 
     /*
     * this method create the screen to add a new inmate to database
@@ -671,6 +671,7 @@ public class PrisonSyncGitVersion extends JFrame {
 
         btnVBack_in = new JButton("Back");
         btnVBack_in.setBounds(451, 373, 117, 25);
+        btnVBack_in.addActionListener(new NavigationListener());
         pViewInmate.add(btnVBack_in);
 
         pCreateActivity = new JPanel();
@@ -696,6 +697,12 @@ public class PrisonSyncGitVersion extends JFrame {
         lblViewEmployee.setFont(new Font("Dialog", Font.BOLD, 24));
         lblViewEmployee.setBounds(41, 24, 213, 38);
         pViewEmployee.add(lblViewEmployee);
+        
+        txtView_emp = new JTextArea();
+        txtView_emp.setEnabled(false);
+        txtView_emp.setEditable(false);
+        txtView_emp.setBounds(41, 112, 527, 233);
+        pViewEmployee.add(txtView_emp);
 
         lblName_emp = new JLabel("Name:");
         lblName_emp.setBounds(41, 74, 56, 15);
@@ -710,17 +717,14 @@ public class PrisonSyncGitVersion extends JFrame {
         btnNameSearch_emp.setBounds(217, 71, 83, 20);
         pViewEmployee.add(btnNameSearch_emp);
 
-        txtView_emp = new JTextArea();
-        txtView_emp.setEnabled(false);
-        txtView_emp.setEditable(false);
-        txtView_emp.setBounds(41, 112, 527, 233);
-        pViewEmployee.add(txtView_emp);
+   
 
-        JScrollPane scroll = new JScrollPane(txtView_emp);
-        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        //JScrollPane scroll = new JScrollPane(txtView_emp);
+        //scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         btnVBack_emp = new JButton("Back");
         btnVBack_emp.setBounds(451, 373, 117, 25);
+        btnVBack_emp.addActionListener(new NavigationListener());
         pViewEmployee.add(btnVBack_emp);
     }
     /*
@@ -922,15 +926,6 @@ public class PrisonSyncGitVersion extends JFrame {
         pFunctionScreen.setVisible(false);
     }
     
-    
-    /*
-    this method generates a unique id number for each inmate created
-    */
-    public String generateUID() {
-        String uid = "";// = UUID.randomUUID().toString();
-        return uid;
-    }    
-    
     public JTextArea getTxtView_in() {
         
         return txtView_in;
@@ -966,9 +961,7 @@ public class PrisonSyncGitVersion extends JFrame {
                 //System.out.println("Main menu pressed");
                 clearPanels();
                 pMainMenu.setVisible(true);
-            } else if (action.getSource() == iSave) {
-                //save work
-            } else if (action.getSource() == iLogout) {
+            }else if (action.getSource() == iLogout) {
                 clearPanels();
                 pLogin.setVisible(true);
 
@@ -990,6 +983,7 @@ public class PrisonSyncGitVersion extends JFrame {
             //clear all the panels
             clearPanels();
             clearVCPanels();
+            System.out.println("ID: "+generateUID());
             //then make the proper panel visible
             if (action.getSource() == btnCreateInmate) {
                 pFunctionScreen.setVisible(true);
@@ -1012,6 +1006,8 @@ public class PrisonSyncGitVersion extends JFrame {
             } else if (action.getSource() == btnCancel_in || action.getSource() == btnCancel2_in
                     || action.getSource() == btnCancel_emp || action.getSource() == btnCancel2_emp) {
                 pMainMenu.setVisible(true);
+                //create all new blank fields for function screen
+                functionScreen();
             } else if (action.getSource() == btnContinue_in) {
                 pFunctionScreen.setVisible(true);
                 pMoreInfoScreen_in.setVisible(true);
@@ -1024,7 +1020,10 @@ public class PrisonSyncGitVersion extends JFrame {
             } else if (action.getSource() == btnBack_emp) {
                 pFunctionScreen.setVisible(true);
                 pCreateEmployee.setVisible(true);
-            } else if (action.getSource() == btnSubmit_in) {
+            } else if (action.getSource() == btnVBack_in || action.getSource() == btnVBack_emp){
+                pMainMenu.setVisible(true);
+                
+            }else if (action.getSource() == btnSubmit_in) {
                 pFunctionScreen.setVisible(true);
 
                 pCreateInmate.setVisible(true);
