@@ -945,118 +945,7 @@ public class PrisonSyncGitVersion extends JFrame {
     public String generateUID() {
         String uid = "";// = UUID.randomUUID().toString();
         return uid;
-    }
-
-
-    public String getFirst() {
-        
-        return first;
-
-    }
-
-
-    public void setFirst(String first) {
-
-        this.first = first;
-
-    }
-    
-    public String getMiddle() {
-
-        return middle;
-
-    }
-    
-    public void setMiddle(String middle) {
-
-        this.middle = middle;
-
-    }
-
-    public String getLast() {
-        
-        return last;
-
-    }
-
-    public void setLast(String last) {
-        
-        this.last = last;
-
-    }
-
-    public String getAddress() {
-        
-        return address;
-        
-    }
-    
-    public void setAddress(String address) {
-
-        this.address = address;
-
-    }
-
-    public String getDob() {
-
-        return dob;
-
-    }
-    
-    public void setDob(String dob) {
-        
-        this.dob = dob;
-        
-    }
-    
-    public String getSsn() {
-        
-        return ssn;
-        
-    }
-    
-    public void setSsn(String ssn) {
-        
-        this.ssn = ssn;
-        
-    }
-    
-    public String getHeightIn() {
-        
-        return height;
-        
-    }
-    
-    public void setHeight(String height) {
-        
-        this.height = height;
-        
-    }
-    
-    public String getWeight() {
-        
-        return weight;
-        
-    }
-    
-    public void setWeight(String weight) {
-        
-        this.weight = weight;
-        
-    }
-    
-    public String getDesc() {
-        
-        return desc;
-        
-    }
-    
-    public void setDesc(String desc) {
-        
-        this.desc = desc;
-        
-    }
-    
+    }    
     public JTextArea getTxtView_in() {
         
         return txtView_in;
@@ -1174,7 +1063,11 @@ public class PrisonSyncGitVersion extends JFrame {
                 desc = txtDescription_in.getText();
                 //create a new inmate object
 
-                Inmate inmate = new Inmate();
+                Inmate inmate = new Inmate(txtFirst_in.getText(), 
+                        txtMidInit_in.getText(), txtLast_in.getText(),
+                        txtAddress_in.getText(), txtDOB_in.getText(),
+                        txtSSN_in.getText(), txtHeight_in.getText(), 
+                        txtWeight_in.getText(), txtDescription_in.getText());
                 System.out.println(inmate.toString());
                 //create new form for creating inmate
                 createInmateScreen();
@@ -1186,7 +1079,11 @@ public class PrisonSyncGitVersion extends JFrame {
 
                     pCreateEmployee.setVisible(true);
                     //create a new employee object
-                    Employee employee = new Employee(txtFirst_emp.getText());
+                    Employee employee = new Employee(txtFirst_emp.getText(), 
+                            txtMidInit_emp.getText(), txtLast_emp.getText(), 
+                            txtAddress_emp.getText(), txtDOB_emp.getText(),
+                            txtSSN_emp.getText(), txtHeight_emp.getText(), 
+                            txtWeight_emp.getText(), txtDescription_emp.getText());
                     System.out.println(employee.toString());
 
                     //create new form for creating employee
