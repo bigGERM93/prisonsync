@@ -1,38 +1,49 @@
 package prisonsyncgitversion;
 
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Image;
-import javax.swing.ButtonGroup;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
-import javax.swing.SwingConstants;
+import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import java.awt.GridLayout;
-import java.awt.SystemColor;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -41,6 +52,30 @@ import javax.swing.JTextArea;
 public class PrisonSyncGitVersion extends JFrame {
 
     //class variables
+    final private String[] visitationDays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+    final private String[] visitationTimes = {"10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"};
+    private JPanel prisonMapButtons;
+    private JButton prisonOutside;
+    private JButton prisonCafeteria;
+    private JButton cellBlocks;
+    private JButton prisonArchitecture;
+    private JList dayBox;
+    private JPanel schedule;
+    private JLabel scheduleView[][];
+    private JLabel selectTime;
+    private JComboBox timeBox;
+    private JComboBox days;
+    private JLabel selectDay;
+    private JLabel enterVisitationName;
+    private JTextField visitationName;
+    private JLabel lblCreateVisit;
+    private JButton submitButton;
+    private JButton cancelButton;
+    private JButton prisonMovieTheatre;
+    private JLabel viewScheduleLabel; 
+    private JButton solitary;
+    private JLabel examplePicture;
+    private JButton pMapBack_btn;
     private JPanel contentPane;
     private JTextField txtUsername;
     private JTextField txtPassword;
@@ -158,6 +193,7 @@ public class PrisonSyncGitVersion extends JFrame {
     private JLabel lblCreateEmployee2;
     private JButton btnCancel2_emp;
     private JButton btnContinue_emp;
+    private VisitationSchedule[] visitView = new VisitationSchedule[5];
 
     /**
      * Launch the prison system application.
@@ -199,6 +235,11 @@ public class PrisonSyncGitVersion extends JFrame {
         contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
         setContentPane(contentPane);
         contentPane.setLayout(new CardLayout(0, 0));
+        
+        //Create Visitation Schedule
+        for (int i = 0; i < visitView.length; i++){
+            visitView[i] = new VisitationSchedule();
+        }
 
         //call methods to build gui screens
         createMenuBar();
@@ -261,6 +302,9 @@ public class PrisonSyncGitVersion extends JFrame {
         viewEmployeeScreen();
         inmateMoreInfoScreen();
         employeeMoreInfoScreen();
+        createVisitationScreen();
+        viewVisitationSchedule();
+        viewPrisonMap();
     }
 
     /*
@@ -644,6 +688,7 @@ public class PrisonSyncGitVersion extends JFrame {
          btnBack_in = new JButton("Search");
          btnBack_in.setBounds(483, 69, 83, 20);
          pViewInmate.add(btnBack_in);*/
+        
         txtView_in = new JTextArea();
         txtView_in.setEnabled(false);
         txtView_in.setEditable(false);
@@ -652,17 +697,263 @@ public class PrisonSyncGitVersion extends JFrame {
 
         btnBack = new JButton("Back");
         btnBack.setBounds(451, 373, 117, 25);
+        btnBack.addActionListener(new CancelButtonListener());
         pViewInmate.add(btnBack);
 
-        pCreateActivity = new JPanel();
-        pFunctionScreen.add(pCreateActivity, "name_384699661729607");
+       
 
+    }
+    
+    public void viewPrisonMap(){
+        
+        pPrisonMap = new JPanel(new BorderLayout());
+        prisonMapButtons = new JPanel(new GridLayout(2,3));
+        
+        pFunctionScreen.add(pPrisonMap);
+        
+        prisonOutside = new JButton("Overview");
+        prisonOutside.addActionListener(new MapButtonListener());
+        
+        prisonArchitecture = new JButton("Architecture");
+        prisonArchitecture.addActionListener(new MapButtonListener());
+        
+        cellBlocks = new JButton("Cell Blocks");
+        cellBlocks.addActionListener(new MapButtonListener());
+        
+        solitary = new JButton("Solitary Confinement");
+        solitary.addActionListener(new MapButtonListener());
+        
+        prisonCafeteria = new JButton("Cell Block Cafeterias");
+        prisonCafeteria.addActionListener(new MapButtonListener());
+        
+        //Warning: sense of humor needed.
+        prisonMovieTheatre = new JButton("Movie Theatre");
+        prisonMovieTheatre.addActionListener(new MapButtonListener());
+        
+        pMapBack_btn = new JButton("Back");
+        pMapBack_btn.addActionListener(new CancelButtonListener());
+        
+        examplePicture = new JLabel();
+        
+        prisonMapButtons.add(prisonArchitecture);
+        prisonMapButtons.add(prisonOutside);
+        prisonMapButtons.add(solitary);
+        prisonMapButtons.add(prisonMovieTheatre);
+        prisonMapButtons.add(prisonCafeteria);
+        prisonMapButtons.add(cellBlocks);
+        
+        pPrisonMap.add(examplePicture, BorderLayout.CENTER);
+        pPrisonMap.add(prisonMapButtons, BorderLayout.NORTH);
+        pPrisonMap.add(pMapBack_btn, BorderLayout.SOUTH);
+       
+        pack();
+        
+    }
+    
+    private class MapButtonListener implements ActionListener{
+        
+        public void actionPerformed(ActionEvent e){
+            
+            examplePicture.setIcon(null);
+            
+            if (e.getSource() == prisonArchitecture){
+            try {
+                BufferedImage myPicture = ImageIO.read(this.getClass().getResource("PrisonArchitecture.jpg"));
+                examplePicture.setIcon(new ImageIcon(myPicture));
+                
+            } catch (IOException ex) {
+                Logger.getLogger(PrisonSyncGitVersion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            
+            if (e.getSource() == prisonOutside){
+            try {
+                BufferedImage myPicture = ImageIO.read(this.getClass().getResource("PrisonOverview.jpg"));
+                examplePicture.setIcon(new ImageIcon(myPicture));
+                pack();
+                
+            } catch (IOException ex) {
+                Logger.getLogger(PrisonSyncGitVersion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            
+            if (e.getSource() == solitary){
+            try {
+                BufferedImage myPicture = ImageIO.read(this.getClass().getResource("Solitary.jpeg"));
+                examplePicture.setIcon(new ImageIcon(myPicture));
+                pack();
+            } catch (IOException ex) {
+                Logger.getLogger(PrisonSyncGitVersion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            
+            if (e.getSource() == prisonMovieTheatre){
+                try {
+                BufferedImage myPicture = ImageIO.read(this.getClass().getResource("MovieTheatre.gif"));
+                examplePicture.setIcon(new ImageIcon(myPicture));
+                pack();
+            } catch (IOException ex) {
+                Logger.getLogger(PrisonSyncGitVersion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+            }
+            
+            if (e.getSource() == cellBlocks){
+                try {
+                BufferedImage myPicture = ImageIO.read(this.getClass().getResource("CellBlocks.jpg"));
+                examplePicture.setIcon(new ImageIcon(myPicture));
+               
+            } catch (IOException ex) {
+                Logger.getLogger(PrisonSyncGitVersion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            
+            if (e.getSource() == prisonCafeteria){
+                try {
+                BufferedImage myPicture = ImageIO.read(this.getClass().getResource("PrisonCafeteria.jpg"));
+                examplePicture.setIcon(new ImageIcon(myPicture));
+                
+            } catch (IOException ex) {
+                Logger.getLogger(PrisonSyncGitVersion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+               
+        }
+    }
+    
+    public void viewVisitationSchedule(){
+       
         pViewActivities = new JPanel();
+        pViewActivities.setLayout(new BorderLayout());
+        pViewActivities.setBackground(new Color(250, 250, 250, 150));
         pFunctionScreen.add(pViewActivities, "name_384761728106314");
-
-        pPrisonMap = new JPanel();
-        pFunctionScreen.add(pPrisonMap, "name_384807218945181");
-
+        
+        viewScheduleLabel = new JLabel("Visitation Schedule");
+        viewScheduleLabel.setFont(new Font("Dialog", Font.BOLD, 24));
+        dayBox = new JList(visitationDays);
+        dayBox.addListSelectionListener(new ListListener());
+        
+        schedule = new JPanel(new GridLayout(8,7));
+        
+        scheduleView = new JLabel[8][7];
+       
+        
+        for( int i = 0; i < scheduleView.length; i++ ){
+            for ( int j = 0; j < scheduleView[i].length; j++){
+                scheduleView[i][j] = new JLabel("");
+                schedule.add(scheduleView[i][j]);
+            }
+        }
+        
+        pViewActivities.add(schedule, BorderLayout.CENTER);
+        pViewActivities.add(dayBox, BorderLayout.WEST);
+        pViewActivities.add(viewScheduleLabel, BorderLayout.NORTH);
+        
+       
+    }
+    
+    private class ListListener implements ListSelectionListener {
+            public void valueChanged(ListSelectionEvent e){
+                
+                int index = dayBox.getSelectedIndex();
+                String[][] daySchedule = visitView[index].getSchedule();
+                
+                for (int i = 0; i < daySchedule.length; i++){
+                    for (int j = 0; j < daySchedule[i].length; j++)
+                    {
+                        scheduleView[i][j].setText(daySchedule[i][j]);
+                    }
+                }
+            }
+        }
+    
+    public void createVisitationScreen(){
+       
+        pCreateActivity = new JPanel();
+        pCreateActivity.setLayout(null);
+        pCreateActivity.setBackground(new Color(250, 250, 250, 150));
+        pFunctionScreen.add(pCreateActivity);
+        
+        lblCreateVisit = new JLabel("Create Visit");
+        lblCreateVisit.setFont(new Font("Dialog", Font.BOLD, 24));
+        lblCreateVisit.setBounds(41, 24, 213, 38);
+        pCreateActivity.add(lblCreateVisit);
+                                      
+        visitationName = new JTextField(30);
+        visitationName.setBounds(190, 72, 180, 19);
+        
+        enterVisitationName = new JLabel("Enter name of Inmate: ");
+        enterVisitationName.setBounds(41, 74, 150, 15);
+       
+        selectDay = new JLabel("Select Day of Visit: ");
+        days = new JComboBox(visitationDays);
+        selectDay.setBounds(41, 200, 150, 15);
+        days.setBounds(190, 200, 100, 22);
+        
+        timeBox = new JComboBox(visitationTimes);
+        selectTime = new JLabel("Select Time of Day: ");
+        selectTime.setBounds(41, 325, 150, 15);
+        timeBox.setBounds(190, 325, 100, 22);
+        
+        submitButton = new JButton("Submit");
+        submitButton.addActionListener(new SubmitButtonListener());
+        submitButton.setBounds(500, 400, 117, 25);
+        
+        cancelButton = new JButton("Cancel");
+        cancelButton.addActionListener(new CancelButtonListener());
+        cancelButton.setBounds(380, 400, 117, 25);
+                
+        pCreateActivity.add(enterVisitationName);
+        pCreateActivity.add(visitationName);
+        pCreateActivity.add(selectDay);
+        pCreateActivity.add(selectTime);
+        pCreateActivity.add(submitButton);
+        pCreateActivity.add(cancelButton);
+        pCreateActivity.add(days);
+        pCreateActivity.add(timeBox);
+    
+    }
+    
+    private class CancelButtonListener implements ActionListener{
+            public void actionPerformed(ActionEvent e){
+                
+                examplePicture.setIcon(null);
+                visitationName.setText("");
+                clearVCPanels();
+                clearPanels();
+                pMainMenu.setVisible(true);
+            }
+    }
+    
+    private class SubmitButtonListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            
+            int day = days.getSelectedIndex();
+            int time = timeBox.getSelectedIndex();
+            String name = visitationName.getText();
+            
+            //check to see if the text field has a name
+            if (name == null || name.equals("") || name.equals(" ")){
+                JOptionPane.showMessageDialog(null, "Please enter name of inmate and try again.");
+            }
+            
+            //if timeslot is not available or inmate already has visit scheduled at that time
+            //prompt user to schedule a different time
+            else if (visitView[day].checkAvailability((time)) < 0 || visitView[day].checkExistingVisit((time + 1), name)){
+                JOptionPane.showMessageDialog(null, "Visitation room is full at the desired time, or this inmate"
+                        + " already has a visitation scheduled for that time.  Please select "
+                        + "another day, or another time.");
+            }
+            //inmate is available to schedule
+            else{
+                visitView[day].setVisit((time + 1), name);
+                JOptionPane.showMessageDialog(null, visitView[day].toString((time + 1)) + " for " + VisitationSchedule.getDay(day));
+                visitationName.setText("");
+                clearVCPanels();
+                clearPanels();
+                pMainMenu.setVisible(true);
+            }
+        }
     }
 
     /*
@@ -713,6 +1004,7 @@ public class PrisonSyncGitVersion extends JFrame {
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         btnBack_emp = new JButton("Back");
+        btnBack_emp.addActionListener(new CancelButtonListener());
         btnBack_emp.setBounds(451, 373, 117, 25);
         pViewEmployee.add(btnBack_emp);
     }
@@ -868,19 +1160,19 @@ public class PrisonSyncGitVersion extends JFrame {
         pBtnSelection_2.add(btnViewEmployee);
         btnViewEmployee.addActionListener(new NavigationListener());
 
-        btnCreateActivity = new JButton("Create Activity");
+        btnCreateActivity = new JButton("Create Inmate Visit");
         btnCreateActivity.setFont(new Font("Dialog", Font.BOLD, 18));
         btnCreateActivity.setBackground(new Color(220, 220, 220));
         pBtnSelection_1.add(btnCreateActivity);
         btnCreateActivity.addActionListener(new NavigationListener());
 
-        btnViewActivities = new JButton("View Activities");
+        btnViewActivities = new JButton("Visitation Schedule");
         btnViewActivities.setFont(new Font("Dialog", Font.BOLD, 18));
         btnViewActivities.setBackground(new Color(220, 220, 220));
         pBtnSelection_2.add(btnViewActivities);
         btnViewActivities.addActionListener(new NavigationListener());
 
-        btnPrisonMap = new JButton("View Prison \nMap");
+        btnPrisonMap = new JButton("View Prison Map");
         btnPrisonMap.setFont(new Font("Dialog", Font.BOLD, 18));
         btnPrisonMap.setBackground(new Color(220, 220, 220));
         pBtnSelection_1.add(btnPrisonMap);
@@ -903,6 +1195,9 @@ public class PrisonSyncGitVersion extends JFrame {
         pViewEmployee.setVisible(false);
         pMoreInfoScreen_in.setVisible(false);
         pMoreInfoScreen_emp.setVisible(false);
+        pCreateActivity.setVisible(false);
+        pViewActivities.setVisible(false);
+        pPrisonMap.setVisible(false);
     }
     /*
      * set all jpanels in card layout to not visible
@@ -924,6 +1219,7 @@ public class PrisonSyncGitVersion extends JFrame {
             if (action.getSource() == iMainMenu) {
                 //System.out.println("Main menu pressed");
                 clearPanels();
+                examplePicture.setIcon(null);
                 pMainMenu.setVisible(true);
             } else if (action.getSource() == iSave) {
                 //save work
@@ -973,9 +1269,12 @@ public class PrisonSyncGitVersion extends JFrame {
                 pViewEmployee.setVisible(true);
             } else if (action.getSource() == btnCreateActivity) {
                 pFunctionScreen.setVisible(true);
+                 pCreateActivity.setVisible(true);
             } else if (action.getSource() == btnViewActivities) {
                 pFunctionScreen.setVisible(true);
+                pViewActivities.setVisible(true);
             } else if (action.getSource() == btnPrisonMap) {
+                pPrisonMap.setVisible(true);
                 pFunctionScreen.setVisible(true);
             } else if (action.getSource() == btnCancel_in || action.getSource() == btnCancel2_in
                     || action.getSource() == btnCancel_emp || action.getSource() == btnCancel2_emp) {
