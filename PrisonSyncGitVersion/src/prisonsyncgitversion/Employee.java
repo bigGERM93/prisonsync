@@ -14,25 +14,16 @@ public class Employee {
 
     PrisonSyncGitVersion git = new PrisonSyncGitVersion();
 
-    public Employee(String first) {
+    public Employee(String first, String middle, String last, String address, String dob, String ssn, String height, String weight, String desc) {
         this.first = first; //git.getFirst();
-
-        middle = git.getMiddle();
-
-        last = git.getLast();
-
-        address = git.getAddress();
-
-        dob = git.getDob();
-
-        ssn = git.getSsn();
-
-        height = git.getHeightIn();
-
-        weight = git.getWeight();
-
-        desc = git.getDesc();
-
+        this.middle = middle;
+        this.last = last;
+        this.address = address;
+        this.dob = dob;
+        this.ssn = ssn;
+        this.height = height;
+        this.weight = weight;
+        this.desc = desc;
     }
 
     public String toString() {
