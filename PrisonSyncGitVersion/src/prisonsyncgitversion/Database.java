@@ -50,7 +50,6 @@ public class Database {
 	 *
 	 * @param query
 	 * @return
-	 * @throws SQLException
 	 */
 	public ResultSet runQuery(String query) {
 		try {
