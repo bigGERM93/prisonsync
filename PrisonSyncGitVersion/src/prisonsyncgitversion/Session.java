@@ -81,17 +81,17 @@ public class Session {
 			ResultSet rs;
 
 			if ("inmate".equals(type)) {
-				table = "idInmates";
+				table = "Inmates";
 			} else {
-				table = "idEmployees";
+				table = "Employees";
 			}
 
-			rs = db.runQuery("SELECT " + table + " FROM prisonsystem.Inmates WHERE First LIKE \"%" + name + "%\" OR Last LIKE \"%" + name + "%\";");
+			rs = db.runQuery("SELECT id" + table + " FROM prisonsystem."+table+" WHERE First LIKE \"%" + name + "%\" OR Last LIKE \"%" + name + "%\";");
 			while (rs.next()) {
 				if ("inmate".equals(type)) {
-					out += getInmate(rs.getInt(table)).toString() + "\n";
+					out += getInmate(rs.getInt("id"+table)).toString() + "\n";
 				} else {
-					out += getEmployee(rs.getInt(table)).toString() + "\n";
+					out += getEmployee(rs.getInt("id"+table)).toString() + "\n";
 				}
 			}
 		} catch (SQLException ex) {

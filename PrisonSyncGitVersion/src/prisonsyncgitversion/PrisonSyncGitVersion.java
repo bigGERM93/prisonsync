@@ -852,6 +852,12 @@ public class PrisonSyncGitVersion extends JFrame {
 
         btnNameSearch_emp = new JButton("Search");
         btnNameSearch_emp.setBounds(217, 71, 83, 20);
+		btnNameSearch_emp.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+				txtView_emp.setText(currentSession.Search("employee",txtName_in.getText()));
+            }
+        });
+		
         pViewEmployee.add(btnNameSearch_emp);
 
         /*lblSSNSearch_emp = new JLabel("SSN:");
@@ -872,8 +878,8 @@ public class PrisonSyncGitVersion extends JFrame {
         txtView_emp.setBounds(41, 112, 527, 233);
         pViewEmployee.add(txtView_emp);
 
-        JScrollPane scroll = new JScrollPane(txtView_emp);
-        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        //JScrollPane scroll = new JScrollPane(txtView_emp);
+        //scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         btnBack_emp = new JButton("Back");
         btnBack_emp.addActionListener(new CancelButtonListener());
