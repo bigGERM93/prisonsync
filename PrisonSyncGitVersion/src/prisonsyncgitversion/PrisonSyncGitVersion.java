@@ -933,18 +933,21 @@ public class PrisonSyncGitVersion extends JFrame {
         });
         txtPassword.addKeyListener(new KeyListener() {
 
-            @Override
-            public void keyPressed(KeyEvent k) {
-                if (k.getKeyCode() == KeyEvent.VK_ENTER) {
-					
-					//Session currentSession = new Session(Integer.parseInt(txtUsername.getText()),txtPassword.getText());
+			@Override
+			public void keyPressed(KeyEvent k) {
+				Session currentSession;
+				if (k.getKeyCode() == KeyEvent.VK_ENTER) {
 
-                    //verify pLogin information
-                    //go to menu screen
-                    clearPanels();
-                    pMainMenu.setVisible(true);
-
-                }
+					currentSession = new Session(Integer.parseInt(txtUsername.getText()), txtPassword.getText());
+					if (!currentSession.authenticated()) {
+						JOptionPane.showMessageDialog(null, "Invalid Username or password");
+					} else {
+						//verify pLogin information
+						//go to menu screen
+						clearPanels();
+						pMainMenu.setVisible(true);
+					}
+				}
 
             }
 

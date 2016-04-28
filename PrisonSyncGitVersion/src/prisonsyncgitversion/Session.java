@@ -13,7 +13,8 @@ import java.util.logging.Logger;
 public class Session {
 
 	private Database db;
-	private String Username;
+	private String Firstname;
+	private boolean auth;
 
 	/**
 	 *
@@ -30,15 +31,27 @@ public class Session {
 			ResultSet rs;
 			rs = db.runQuery("SELECT Salt FROM prisonsystem.Employees WHERE idEmployees=" + id + ";");
 			if (rs.next()) {
+				auth = true;
 				String salt = rs.getString("Salt");
 				rs = db.runQuery("SELECT * FROM prisonsystem.Employees WHERE idEmployees=" + id + " AND PasswordHash='" + password + "';");
 				rs.next();
-				Username = rs.getString("Name");
+				Firstname = rs.getString("First");
+			}else{
+				auth = false;
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
+			auth = false;
 		}
 
+	}
+	
+	/**
+	 *
+	 * @return
+	 */
+	public boolean authenticated(){
+		return auth;
 	}
 
 }
