@@ -44,6 +44,7 @@ import javax.swing.event.ListSelectionListener;
 public class PrisonSyncGitVersion extends JFrame {
 
     //class variables
+	Session currentSession;
     final private String[] visitationDays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
     final private String[] visitationTimes = {"10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"};
     private JList dayBox;
@@ -653,6 +654,7 @@ public class PrisonSyncGitVersion extends JFrame {
         btnName_in = new JButton("Search");
         btnName_in.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
+				txtView_in.setText(currentSession.Search("inmate",txtName_in.getText()));
             }
         });
         btnName_in.setBounds(217, 71, 83, 20);
@@ -935,7 +937,6 @@ public class PrisonSyncGitVersion extends JFrame {
 
 			@Override
 			public void keyPressed(KeyEvent k) {
-				Session currentSession;
 				if (k.getKeyCode() == KeyEvent.VK_ENTER) {
 
 					currentSession = new Session(Integer.parseInt(txtUsername.getText()), txtPassword.getText());
